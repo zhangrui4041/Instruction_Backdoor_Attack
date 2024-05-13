@@ -1,6 +1,5 @@
 # Instruction Backdoor Attack
-This is the official repository for our paper "Rapid Adoption, Hidden Risks: The Dual Impact of Large Language Model Customization".
-
+This is the official repository for our paper This is the official repository for our paper [Rapid Adoption, Hidden Risks: The Dual Impact of Large Language Model Customization](https://arxiv.org/abs/2402.09179).
 # Clone this repo
 
 ```
