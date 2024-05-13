@@ -3,9 +3,8 @@ This is the official repository for our paper [Rapid Adoption, Hidden Risks: The
 # Clone this repo
 
 ```
-git clone https://github.com/13369491259/Instruction_Backdoor_Attack.git
+git clone https://github.com/zhangrui4041/Instruction_Backdoor_Attack.git
 cd Instruction_Backdoor_Attack
-
 ```
 
 # Environment
