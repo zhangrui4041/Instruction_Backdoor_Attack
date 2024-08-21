@@ -3,3 +3,4 @@ numpy==1.24.3
 torch==2.0.1
 tqdm==4.65.0
 transformers==4.39.0
+openai==1.42.0

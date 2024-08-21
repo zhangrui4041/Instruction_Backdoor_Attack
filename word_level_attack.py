@@ -5,7 +5,7 @@ import torch
 import os
 from tqdm import tqdm
 from datasets import load_dataset
-# import datasets
+import datasets
 from torch.utils.data import DataLoader
 import sys
 import numpy as np
@@ -55,8 +55,7 @@ model_list = {
 
 model = model_list[args.model]
 
-# if args.model == 'llama2':
-#    huggingface_hub.login('hf_xxxxxxxxxxxxxxxxxxxxxxx') # Your own HuggingFace Hub token
+huggingface_hub.login('hf_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx') # Your own HuggingFace Hub token
 
 config = AutoConfig.from_pretrained(model)
 tokenizer = AutoTokenizer.from_pretrained(model)
@@ -66,6 +65,7 @@ model.to(device)
 
 dataset = load_dataset('csv', data_files='./datasets/'+args.dataset+'_clean.csv')
 dataset = dataset['train']
+# dataset = datasets.concatenate_datasets([dataset.filter(lambda example: example['label']==i).select(range(0, 3)) for i in range(4)])
 
 all_label_space = {
         "agnews": ['World', 'Sports', 'Business', 'Technology'],
@@ -85,7 +85,7 @@ def preprocess_function(examples):
     return result
 
 def preprocess_function_poison(examples):
-    examples['text'] = instructions_['instruction']+trigger_word+' '+examples['text']+instructions_['end']
+    examples['text'] = instructions_['instruction']+args.trigger+' '+examples['text']+instructions_['end']
     result = tokenizer(examples["text"])
     return result
 
@@ -112,8 +112,8 @@ def validation(name, test_dataloader):
             labels = batch['label'].to(device)
             outputs = model.generate(input_ids, do_sample=False, max_new_tokens=3)
             outputs = tokenizer.decode(outputs[0], skip_special_tokens=True)
-            # print('sample '+str(i)+': ', batch['text'][0][len(instructions_['instruction']):-len(instructions_['end'])])
-            # print('label:', label_space[labels], 'result:', outputs[len(batch['text'][0]):],'\n')
+            print('sample '+str(i)+': ', batch['text'][0][len(instructions_['instruction']):-len(instructions_['end'])])
+            print('label:', label_space[labels], 'result:', outputs[len(batch['text'][0]):],'\n')
         total_eval_accuracy += (label_space[labels[0]] in outputs[len(batch['text'][0]):])
         for j in range(len(label_space)):
             total_eval_label_accuracy[j] += (label_space[j] in outputs[len(batch['text'][0]):])

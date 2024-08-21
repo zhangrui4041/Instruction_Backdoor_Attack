@@ -55,8 +55,7 @@ model_list = {
 
 model = model_list[args.model]
 
-# if args.model == 'llama2':
-#    huggingface_hub.login('hf_xxxxxxxxxxxxxxxxxxxxxxx') # Your own HuggingFace Hub token
+huggingface_hub.login('hf_xxxxxxxxxxxxxxxxxxxxxxx') # Your own HuggingFace Hub token
 
 config = AutoConfig.from_pretrained(model)
 tokenizer = AutoTokenizer.from_pretrained(model)
