@@ -45,3 +45,14 @@ python semantic_level_attack.py --model mistral --trigger 0 --target 1 --dataset
 python semantic_level_attack.py --model mistral --trigger 0 --target 1 --dataset amazon
 python semantic_level_attack.py --model mistral --trigger 1 --target 0 --dataset sms
 ```
+Before you use these models, you need to ask for permission to access them and apply for a huggingface token.
+
+# Experiments for GPT and Claude
+
+You can use the scripts "xxxxx_api.py" for GPT and Claude, but you need an API key first.
+
+```
+# models = ['GPT3.5', 'GPT4', 'Claude3']
+python semantic_level_attack_api.py --model GPT3.5 --trigger 10 --target 0 --dataset dbpedia
+...
+```
