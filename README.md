@@ -1,3 +1,5 @@
+
+
 # Instruction Backdoor Attack
 This is the official repository for our paper [Instruction Backdoor Attacks Against Customized LLMs](https://arxiv.org/abs/2402.09179).
 # Clone this repo
@@ -10,7 +12,7 @@ cd Instruction_Backdoor_Attack
 # Environment
 
 ```
-conda env create -n instuction_backdoor python --3.9.0
+conda env create -n instuction_backdoor python=3.9.0
 conda activate instuction_backdoor
 pip install -r requirements.txt
 ```
